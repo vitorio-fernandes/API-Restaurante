@@ -38,7 +38,8 @@ public class AdministradorController {
    * O sistema deve permitir o cadastro de clientes com nome, endereço, telefone e
    * email. OK
    * O sistema deve permitir o cadastro de produtos com nome, descrição, preço e
-   * disponibilidade. OK
+   * disponibilidade.OK
+   * O administrador deve poder atualizar as informações dos produtos. OK
    * O sistema deve calcular o valor total do pedido automaticamente. OK
    * O sistema deve permitir ao administrador atualizar o status do pedido. OK
    */
@@ -54,6 +55,14 @@ public class AdministradorController {
   public ResponseEntity<ProdutoResponseDTO> criarProduto(@RequestBody ProdutoRequestDTO requestDTO) {
     Produto produto = produtoService.salvarProduto(requestDTO);
     ProdutoResponseDTO responseDTO = new ProdutoResponseDTO(produto.getId(), produto.getNome(), produto.getDescricao(),
+        produto.getPreco(), produto.isDisponivel());
+    return ResponseEntity.ok(responseDTO);
+  }
+
+  @PutMapping("produto/{id}") // Atualizar Produto
+  public ResponseEntity<ProdutoResponseDTO> atualizarProduto(@PathVariable UUID id, @RequestBody ProdutoRequestDTO requestDTO) {
+      Produto produto = produtoService.atualizarProduto(requestDTO, id);
+      ProdutoResponseDTO responseDTO = new ProdutoResponseDTO(produto.getId(), produto.getNome(), produto.getDescricao(),
         produto.getPreco(), produto.isDisponivel());
     return ResponseEntity.ok(responseDTO);
   }

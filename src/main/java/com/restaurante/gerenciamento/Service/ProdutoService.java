@@ -52,6 +52,11 @@ public class ProdutoService {
     return produtoRepository.findByDisponivelFalse();
   }
 
+  //Listar Produtos DISPONIVEIS
+  public List<Produto> produtosDisponiveis(){
+    return produtoRepository.findByDisponivelTrue();
+  }
+
   // Pesquisar Produto pelo seu ID
   public Produto produtoPeloId(UUID id) {
     Optional<Produto> optProdutos = produtoRepository.findById(id);

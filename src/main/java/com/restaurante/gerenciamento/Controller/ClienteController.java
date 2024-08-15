@@ -47,7 +47,7 @@ public class ClienteController {
   //O cliente deve poder visualizar os produtos disponíveis. OK
   @GetMapping
   public ResponseEntity<List<ProdutoResponseDTO>> listarProdutos(){
-    List<Produto> produtos = produtoService.listarTodosProdutos();
+    List<Produto> produtos = produtoService.produtosDisponiveis();
     List<ProdutoResponseDTO> produtosResponse = new ArrayList<>();
     for (Produto produto : produtos) {
       ProdutoResponseDTO produtoResponseDTO = new ProdutoResponseDTO(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(), produto.isDisponivel());

@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, UUID> {
-  List<Produto> findByDisponivelFalse(); 
+  List<Produto> findByDisponivelFalse();
+  List<Produto> findByDisponivelTrue();
 }
